@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/tarpal7/all-commerce"
 	"log"
+	"github.com/tarpal7/all-commerce"
 )
 func main() {
 	srv := new(allcommerce.Server)
