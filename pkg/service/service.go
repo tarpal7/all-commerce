@@ -1,8 +1,13 @@
 package service
 
-import "github.com/tarpal7/all-commerce/pkg/repository"
+import (
+	"github.com/tarpal7/all-commerce"
+	"github.com/tarpal7/all-commerce/pkg/repository"
+)
 // Authorization ...
 type Authorization interface {
+	CreateUser(user allcommerce.User) (int, error)
+	GenerateToken(username, password string) (string, error)
 
 }
 
@@ -25,5 +30,7 @@ type Service struct {
 
 // NewService ...
 func NewService(repos *repository.Repository) *Service {
-	return &Service{}
+	return &Service{
+		Authorization: NewAuthService(repos.Authorization),
+	}
 }

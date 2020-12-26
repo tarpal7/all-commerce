@@ -2,8 +2,7 @@ package allcommerce
 
 // User ...
 type User struct {
-	ID       int    `json:"-"`
-	Name     string `json:"name"`
-	Username string `json:"username"`
-	Password string `json:"password"`
+	Id       int    `json:"-" db:"id"`
+	Username string `json:"username" binding:"required"`
+	Password string `json:"password" binding:"required"`
 }
