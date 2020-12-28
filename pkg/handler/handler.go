@@ -2,6 +2,7 @@ package handler
 
 import "github.com/gin-gonic/gin"
 import "github.com/tarpal7/all-commerce/pkg/service"
+
 // Handler ...
 type Handler struct {
 	services *service.Service
@@ -22,7 +23,7 @@ func (h *Handler) InitRoutes() *gin.Engine {
 		auth.POST("/sign-in", h.signIn)
 	}
 
-	api := router.Group("/api")
+	api := router.Group("/api", h.userIdentity)
 	{
 		lists := api.Group("/lists")	
 		{
@@ -41,8 +42,6 @@ func (h *Handler) InitRoutes() *gin.Engine {
 			items.PUT("/:item_id", h.updateItem)
 			items.DELETE("/:item_id", h.deleteItem)
 		}
-
-
 	}
 
 	return router
